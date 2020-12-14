@@ -5,15 +5,15 @@
 
     <div class="well">
         <label>商品名称：</label>
-        <div>宏辉果蔬 苹果 烟台红富士 12枚75mm 单果约170-190g 总重4.2斤</div>
+        <div>{$goods.goods_name}</div>
         <label>商品价格：</label>
-        <div>25.00</div>
+        <div>{$goods.goods_price}</div>
         <label>商品数量：</label>
-        <div>2000</div>
+        <div>{$goods.goods_number}</div>
         <label>商品图片：</label>
-        <div><img src="./img/goods01_thumb.jpg"></div>
+        <div><img src="/static/admin/img/goods01_thumb.jpg" alt="/static/admin/img/goods01_thumb.jpg"></div>
         <label>商品简介：</label>
-        <div>商品简介商品简介商品简介</div>
+        <div>{$goods.goods_introduce}</div>
     </div>
     <!-- footer -->
     <footer>

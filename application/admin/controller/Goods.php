@@ -25,10 +25,12 @@ class Goods extends Controller
         return view();
     }
 
-    public function detail()
+    public function detail($id)
     {
-        return view();
+        $goods = GoodsModel::find($id);
+        return view('detail', ['goods' => $goods]);
     }
+
     public function delete()
     {
 
