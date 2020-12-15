@@ -1,10 +1,16 @@
+<!-- 配置文件 -->
+<script type="text/javascript" src="/plugins/ueditor/ueditor.config.js"></script>
+<!-- 编辑器源码文件 -->
+<script type="text/javascript" src="/plugins/ueditor/ueditor.all.js"></script>
+<!--语言包文件-->
+<script type="text/javascript" src="/plugins/ueditor/lang/zh-cn/zh-cn.js"></script>
 <div class="content">
     <div class="header">
         <h1 class="page-title">商品新增</h1>
     </div>
 
     <!-- add form -->
-    <form action="" method="post" id="tab" enctype="multipart/form-data">
+    <form action="{:url('create')}" method="post" id="tab" enctype="multipart/form-data">
         <ul class="nav nav-tabs">
             <li role="presentation" class="active"><a href="#basic" data-toggle="tab">基本信息</a></li>
             <li role="presentation"><a href="#desc" data-toggle="tab">商品描述</a></li>
@@ -15,11 +21,11 @@
             <div class="tab-pane fade in active" id="basic">
                 <div class="well">
                     <label>商品名称：</label>
-                    <input type="text" name="" value="" class="input-xlarge">
+                    <input type="text" name="goods_name" value="" class="input-xlarge">
                     <label>商品价格：</label>
-                    <input type="text" name="" value="" class="input-xlarge">
+                    <input type="text" name="goods_price" value="" class="input-xlarge">
                     <label>商品数量：</label>
-                    <input type="text" name="" value="" class="input-xlarge">
+                    <input type="text" name="goods_number" value="" class="input-xlarge">
                     <label>商品logo：</label>
                     <input type="file" name="" value="" class="input-xlarge">
                     <label>商品分类：</label>
@@ -37,7 +43,7 @@
             <div class="tab-pane fade in" id="desc">
                 <div class="well">
                     <label>商品简介：</label>
-                    <textarea value="Smith" name="" rows="3" class="input-xlarge"></textarea>
+                    <textarea  id="editor" name="goods_introduce" rows="3" ></textarea>
                 </div>
             </div>
             <div class="tab-pane fade in" id="attr">
@@ -75,6 +81,9 @@
 </div>
 <script type="text/javascript">
     $(function () {
+        // 实例化编辑器
+        UE.getEditor('editor');
+
         $('.add').click(function () {
             var add_div = '<div>[<a href="javascript:void(0);" class="sub">-</a>]商品图片：<input type="file" name="goods_pics[]" value="" class="input-xlarge"></div>';
             $(this).parent().after(add_div);
