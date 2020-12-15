@@ -19,18 +19,18 @@
         <h1>后台管理系统</h1>
     </header>
     <div class="login-main">
-        <form action="" class="form" method="post">
+        <form action="{$Request.url}" class="form" method="post">
             <div class="form-item">
                 <label class="login-icon">
                     <i></i>
                 </label>
-                <input type="text" id='username' name="" placeholder="这里输入登录名" required>
+                <input type="text" id='username' name="username" placeholder="这里输入登录名" required>
             </div>
             <div class="form-item">
                 <label class="login-icon">
                     <i></i>
                 </label>
-                <input type="password" id="password" name="" placeholder="这里输入密码">
+                <input type="password" id="password" name="password" placeholder="这里输入密码">
             </div>
             <div class="form-item verify">
                 <label class="login-icon">

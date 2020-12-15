@@ -2,9 +2,8 @@
 
 namespace app\admin\controller;
 
-use think\Controller;
 
-class Auth extends Controller
+class Auth extends Base
 {
     public function index()
     {

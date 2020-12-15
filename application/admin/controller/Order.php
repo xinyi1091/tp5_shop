@@ -2,9 +2,8 @@
 
 namespace app\admin\controller;
 
-use think\Controller;
 
-class Order extends Controller
+class Order extends Base
 {
     public function index()
     {

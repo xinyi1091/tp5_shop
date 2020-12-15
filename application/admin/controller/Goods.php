@@ -2,12 +2,11 @@
 
 namespace app\admin\controller;
 
-use think\Controller;
 use app\admin\model\Goods as GoodsModel;
 use think\Request;
 use think\Validate;
 
-class Goods extends Controller
+class Goods extends Base
 {
     public function index()
     {
