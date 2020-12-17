@@ -36,8 +36,8 @@
                 <label class="login-icon">
                     <i></i>
                 </label>
-                <input type="text" id='verify' class="pull-left" name="" placeholder="这里输入验证码">
-                <img class="pull-right" src="__STATIC__/admin/img/verify.png" alt="verify">
+                <input type="text" id='verify' class="pull-left" name="code" placeholder="这里输入验证码">
+                <img class="pull-right" src="{:captcha_src('login')}" alt="verify" onclick="this.src='{:captcha_src(\'login\')}'+'?'+Math.random()">
                 <div class="clear"></div>
             </div>
             <div class="form-item">

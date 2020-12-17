@@ -33,6 +33,11 @@ class Login extends Controller
                 $error = $validate->getError();
                 $this->error($error);
             }
+            // 校验验证码
+            if (!captcha_check($data['code'], 'login')) {
+                // 验证失败
+                $this->error('验证码错误');
+            }
             // 查询密码和用户名是否匹配
             $password = encrypt_password($data['password']);
             $where    = [
