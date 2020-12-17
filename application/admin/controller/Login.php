@@ -15,15 +15,17 @@ class Login extends Controller
         if (request()->isPost()) {
             // post请求，表单提交
             $data = request()->param();
-            // 验证规则
+            // 验证规则 todo 待验证
             $rules = [
                 'username' => 'require',
                 'password' => 'require|length:6,16',
+                // 'code|验证码' => 'require|captcha:login',
             ];
             $msg   = [
                 'username.require' => '用户名不能为空',
                 'password.require' => '用户密码不能为空',
                 'password.length'  => '用户名密码长度必须在6-16个字符之间',
+                // 'code.require'     => '验证码不能为空',
             ];
             // 实例化验证器类 \think\Validate()
             $validate = new Validate($rules, $msg);
