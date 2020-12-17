@@ -15,7 +15,7 @@ class Login extends Controller
         if (request()->isPost()) {
             // post请求，表单提交
             $data = request()->param();
-            // 验证规则 todo 待验证
+            // 验证规则 
             $rules = [
                 'username' => 'require',
                 'password' => 'require|length:6,16',
