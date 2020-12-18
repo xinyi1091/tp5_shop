@@ -3,6 +3,7 @@
 namespace app\admin\controller;
 
 use app\admin\model\Goods as GoodsModel;
+use think\Image;
 use think\Request;
 use think\Validate;
 
@@ -56,6 +57,9 @@ class Goods extends Base
                 $error = $validate->getError();
                 $this->error($error);
             }
+            // 商品logo
+            $data['goods_logo'] = $this->upload_logo();
+
             // 使用静态create方法保存数据，第二个参数表示过滤非数据表中的字段
             $res = GoodsModel::create($data, true);
             if ($res) {
@@ -103,6 +107,18 @@ class Goods extends Base
             $error = $validate->getError();
             $this->error($error);
         }
+        // 商品logo
+        $file = request()->file('logo');
+        if (!empty($file)) {
+            $data['goods_logo'] = $this->upload_logo();
+            // 查询原图片的地址
+            $goods = GoodsModel::find($id);
+            if ($goods->goods_logo) {
+                // 删除原图
+                unlink("." . $goods->goods_logo);
+            }
+        }
+
         // 修改数据
         GoodsModel::update($data, ['id' => $id], true);
         // 页面跳转
@@ -123,5 +139,31 @@ class Goods extends Base
         // 软删除
         GoodsModel::destroy($id);
         $this->success('操作成功', 'index');
+    }
+
+    // 私有方法
+    private function upload_logo()
+    {
+        // 获取表单上传文件
+        $file = request()->file('logo');
+        if (empty($file)) {
+            $this->error('没有上传logo图片');
+        }
+
+        // 移动到框架应用根目录/public/uploads/ 目录下
+        $info = $file->validate(['size' => 5 * 1024 * 1024, 'ext' => 'jpg,png,gif,jpeg'])
+                     ->move(ROOT_PATH . 'public' . DS . 'uploads');
+        if ($info) {
+            $goods_logo = DS . 'uploads' . DS . $info->getSaveName();
+            // 处理生成缩略图
+            $image = Image::open("." . $goods_logo);
+            // 按照原图的比例生成一个最大为200*240的缩略图并保存为$goods_logo
+            $image->thumb(200, 240)->save("." . $goods_logo);
+            return $goods_logo;// 保存的是缩略图
+        } else {
+            // 上传失败获取错误信息
+            $error = $file->getError();
+            $this->error($error);
+        }
     }
 }
