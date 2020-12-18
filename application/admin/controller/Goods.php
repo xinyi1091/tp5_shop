@@ -11,7 +11,18 @@ class Goods extends Base
     public function index()
     {
         // 查询列表页需要的数据
-        $list = GoodsModel::select();// 推荐使用select()
+        // $list = GoodsModel::select();// 推荐使用select()
+        // $list = GoodsModel::order('id desc')->paginate(3);
+        // 接受keyword参数
+        $keyword = input('keyword');
+        $where   = [];
+        if (!empty($keyword)) {
+            $where['goods_name'] = ['like', "%$keyword%"];
+        }
+        // paginate的三个参数：每页数量 是否简介模式或总记录数 配置参数(query:url额外参数)
+        $list = GoodsModel::where($where)->order('id desc')->paginate(3, false, [
+            'query' => ['keyword', $keyword],
+        ]);
         // 渲染模板
         return view('index', ['list' => $list]);
     }
