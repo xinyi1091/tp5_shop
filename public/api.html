@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>AJAX请求restful接口</title>
+    <script src="/static/admin/js/jquery-1.8.1.min.js"></script>
+</head>
+<body>
+<input type="button" id="index" value="index">
+<input type="button" id="create" value="create">
+<input type="button" id="save" value="save">
+<input type="button" id="read" value="read">
+<input type="button" id="edit" value="edit">
+<input type="button" id="update" value="update">
+<input type="button" id="delete" value="delete">
+<input type="button" id="post_to_put" value="伪装put">
+<input type="button" id="post_to_delete" value="伪装delete">
+<script>
+    $(function () {
+        $('#index').click(function () {
+            $.ajax({
+                "url"     : "/news",
+                "type"    : "get",
+                "data"    : "",
+                "dataType": "json",
+                "success" : function (res) {
+                    console.log(res);
+                }
+            });
+        });
+        $('#create').click(function () {
+            $.ajax({
+                "url"     : "/news/create",
+                "type"    : "get",
+                "data"    : "",
+                "dataType": "json",
+                "success" : function (res) {
+                    console.log(res);
+                }
+            });
+        });
+        $('#save').click(function () {
+            $.ajax({
+                "url"     : "/news",
+                "type"    : "post",
+                "data"    : "",
+                "dataType": "json",
+                "success" : function (res) {
+                    console.log(res);
+                }
+            });
+        });
+        $('#read').click(function () {
+            $.ajax({
+                "url"     : "/news/33",
+                "type"    : "get",
+                "data"    : "",
+                "dataType": "json",
+                "success" : function (res) {
+                    console.log(res);
+                }
+            });
+        });
+        $('#edit').click(function () {
+            $.ajax({
+                "url"     : "/news/33/edit",
+                "type"    : "get",
+                "data"    : "",
+                "dataType": "json",
+                "success" : function (res) {
+                    console.log(res);
+                }
+            });
+        });
+        $('#update').click(function () {
+            $.ajax({
+                "url"     : "/news/33",
+                "type"    : "put",
+                "data"    : "",
+                "dataType": "json",
+                "success" : function (res) {
+                    console.log(res);
+                }
+            });
+        });
+        $('#delete').click(function () {
+            $.ajax({
+                "url"     : "/news/33",
+                "type"    : "delete",
+                "data"    : "",
+                "dataType": "json",
+                "success" : function (res) {
+                    console.log(res);
+                }
+            });
+        });
+        $('#post_to_put').click(function () {
+            $.ajax({
+                "url"     : "/news/33",
+                "type"    : "post",
+                "data"    : "_method=put",
+                "dataType": "json",
+                "success" : function (res) {
+                    console.log(res);
+                }
+            });
+        });
+        $('#post_to_delete').click(function () {
+            $.ajax({
+                "url"     : "/news/33",
+                "type"    : "post",
+                "data"    : "_method=delete",
+                "dataType": "json",
+                "success" : function (res) {
+                    console.log(res);
+                }
+            });
+        });
+    });
+</script>
+</body>
+</html>
